@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CommentForm.Models.CommentModel>
+@{
+    Layout = null;
+}
+<html lang="sv">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Hello React</title>
+</head>
+<body>
+    @Html.React("CommentBox", new
+{
+    initialData = Model,
+    url = Url.Action("Comments"),
+    submitUrl = Url.Action("AddComment"),
+    pollInterval = 2000,
+})
+    <div id="content"></div>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+    <script src="@Url.Content("~/js/commentform.jsx")"></script>
+    @Html.ReactInitJavaScript()
+</body>
+</html>
